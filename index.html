@@ -1,0 +1,46 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body>
+    <div class="main">
+        <div class="header">
+            <h2>ketyl</h2>
+            <p>Url Shortener</p>
+        </div>
+        <div class="primary">
+            <input class="urlInput" type="text" placeholder="Paste your link here..." id="post-url">
+            <button class="submit urlButton" id="post-btn" method="post">Submit</button>
+        </div>
+        <div class="footer">
+            <p>Made by Torin Stephen</p>
+        </div>
+    </div>
+</body>
+
+<script>
+    const button = document.getElementById('post-btn');
+    var url = document.getElementById("post-url").value;
+    console.log('1');
+
+    button.addEventListener('click', async _ => {
+        console.log('2');
+        try {
+            console.log('3');
+            const response = await fetch('http://ovre.tk/api/url/shorten', {
+                method: 'post',
+                body: {
+                    "longUrl": url
+                }
+            });
+            console.log('4');
+            console.log('Completed!', response);
+            alert('Completed! Short URL:', response.shortUrl)
+            console.log('5');
+        } catch (err) {
+            console.error(`Error: ${err}`);
+        }
+    });
+</script>
